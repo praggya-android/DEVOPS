@@ -29,7 +29,7 @@ stages {
         stage('Run tests') {
             steps {
                 // Run your unittests
-                sh 'python -m unittest test_main.py'
+                sh 'python -m unittest "test_main.py"'
             }
         }
     }
