@@ -1,25 +1,37 @@
 pipeline {
     agent any
-    
-    stages {
+
+    // Configuration options
+    options {
+        buildDiscarder(logRotator(daysToKeepStr: '10', numToKeepStr: '10'))
+        timeout(time: 12, unit: 'HOURS')
+        timestamps()
+    }
+
+    // Triggers
+    triggers {
+        cron('@midnight')
+    }
+stages {
         stage('Checkout') {
             steps {
-                // Checkout your code from GitHub
+                // Checkout the code from your repository
                 git 'https://github.com/praggya-android/DEVOPS.git'
+            
             }
         }
-        
         stage('Install dependencies') {
             steps {
-                // Install dependencies using pip
+                // Install any dependencies required for your application and tests
                 sh 'pip install -r requirements.txt'
             }
         }
-        
-        stage('Run unittests') {
+        stage('Run tests') {
             steps {
                 // Run your unittests
-                sh 'python -m unittest discover -s tests -p "test_main.py"'
+                sh 'python -m unittest test_main.py'
             }
         }
     }
+}
+  
