@@ -4,22 +4,22 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the code from your repository
+                // Checkout your code from GitHub
                 git 'https://github.com/praggya-android/DEVOPS.git'
-            
             }
         }
+        
         stage('Install dependencies') {
             steps {
-                // Install any dependencies required for your application and tests
+                // Install dependencies using pip
                 sh 'pip install -r requirements.txt'
             }
         }
-        stage('Run tests') {
+        
+        stage('Run unittests') {
             steps {
                 // Run your unittests
-                sh 'python -m unittest test_main.py'
+                sh 'python -m unittest discover -s tests -p "test_main.py"'
             }
         }
     }
-}
