@@ -29,10 +29,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Pull Docker image from Docker Hub
-        run: docker pull praggya/myflaskapp:latest
+        run: docker pull${{ secrets.DOCKER_USERNAME }}/myflaskapp:latest
 
       - name: Tag Docker image for EKS
-        run: docker tag praggya/myflaskapp:latest devopscluster.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/myflaskapp:latest
+        run: docker tag  ${{ secrets.DOCKER_USERNAME }}/myflaskapp:latest devopscluster.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/myflaskapp:latest
       - name: Push Docker image to EKS
         run: docker push  devopscluster.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/myflaskapp:latest
 
