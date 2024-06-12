@@ -1,25 +1,18 @@
 pipeline {
     agent any
-     environment {
-        PATH = "/path/to/python/bin:$PATH"
-
-    // Configuration options
     options {
         buildDiscarder(logRotator(daysToKeepStr: '10', numToKeepStr: '10'))
         timeout(time: 12, unit: 'HOURS')
         timestamps()
     }
-
-    // Triggers
     triggers {
         cron('@midnight')
     }
-stages {
+    stages {
         stage('Checkout') {
             steps {
                 // Checkout the code from your repository
                 git 'https://github.com/praggya-android/DEVOPS.git'
-            
             }
         }
         stage('Install dependencies') {
@@ -36,4 +29,3 @@ stages {
         }
     }
 }
-  
