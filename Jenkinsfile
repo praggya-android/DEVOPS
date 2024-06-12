@@ -1,5 +1,7 @@
 pipeline {
     agent any
+     environment {
+        PATH = "/path/to/python/bin:$PATH"
 
     // Configuration options
     options {
