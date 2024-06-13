@@ -17,5 +17,8 @@ spec:
         image: praggya/myflaskapp:latest
         automountServiceAccountToken: false
         imagePullPolicy: Always
+        resources:
+        limits:
+          memory: 100Mi
         ports:
         - containerPort: 5000
