@@ -15,6 +15,7 @@ spec:
       containers:
       - name: myflaskapp
         image: praggya/myflaskapp:latest
+        automountServiceAccountToken: false
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
