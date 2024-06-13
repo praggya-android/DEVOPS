@@ -34,7 +34,7 @@ jobs:
       - name: Create Amazon EKS Cluster
         run: |
           aws eks create-cluster \
-            --name cluster1 \
+            --name mycluster1 \
             --role-arn arn:aws:iam::975050029356:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS \
             --resources-vpc-config subnetIds=subnet-0268718dbb841798e,subnet-0da5a1be33156c695 \
             --region ${{ secrets.AWS_REGION }}
